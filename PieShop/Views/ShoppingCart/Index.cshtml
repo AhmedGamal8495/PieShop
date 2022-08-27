@@ -1,0 +1,38 @@
+﻿@model ShoppingCartViewModel
+
+<h2>your shoppiing cart</h2>
+<table class="table table-bordered table-striped " >
+    <thead>
+        <tr>
+            <th>Selected Amount</th>
+            <th>Pie</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ShoppingCart.shoppingCartItems) 
+        { 
+            <tr>
+                <td class="text-center">@item.Amount</td>
+                <td class="text-center">@item.pie.Name</td>
+                <td class="text-center">@item.pie.Price</td>
+                <td class="text-center">@((item.Amount * item.pie.Price).ToString("c"))</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total</td>
+            <td class="text-right">
+                @Model.ShoppingCartTotal.ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a asp-action="CheckOut" asp-controller="Order" class="btn btn-outline-primary">Check Out Now!</a>
+</div>
+
+
